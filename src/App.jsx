@@ -34,28 +34,41 @@ export default function App() {
 
   return (
     <>
-      <form onSubmit={handleFormSubmit}>
-        <input
-          value={newArticle}
-          onChange={(e) => setNewArticle(e.target.value.trim())}
-          type="text"
-          minLength="3"
-        ></input>
+      <section className="container container-form">
+        <div className="input-container ">
+          <form className="input-flex " onSubmit={handleFormSubmit}>
+            <input
+              className="input "
+              value={newArticle}
+              onChange={(e) => setNewArticle(e.target.value.trim())}
+              type="text"
+              minLength="3"
+              placeholder="Inserisci testo"
+            ></input>
 
-        <button>invia</button>
-        {errorMessage && <p>{errorMessage}</p>}
-      </form>
-      <ul>
-        {articleList.map((article, index) => (
-          <li key={index}>
-            {article}
-            <FontAwesomeIcon
-              onClick={() => handleToDelete(index)}
-              icon="fa-solid fa-trash"
-            />
-          </li>
-        ))}
-      </ul>
+            <button className="button">invia</button>
+          </form>
+          <p className="error"> {errorMessage && <p>{errorMessage}</p>}</p>
+        </div>
+
+        <div className="container-list ">
+          <ul className="ul-flex">
+            {articleList.map((article, index) => (
+              <li className="list-li" key={index}>
+                <div>{article}</div>
+
+                <div>
+                  <FontAwesomeIcon
+                    className="icon-trash"
+                    onClick={() => handleToDelete(index)}
+                    icon="fa-solid fa-trash"
+                  />
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
     </>
   );
 }
