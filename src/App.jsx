@@ -51,10 +51,13 @@ export default function App() {
           <p className="error"> {errorMessage && <p>{errorMessage}</p>}</p>
         </div>
 
-        <div className="container-list ">
+        <div
+          className="container-list 
+        "
+        >
           <ul className="ul-flex">
             {articleList.map((article, index) => (
-              <li className="list-li" key={index}>
+              <li className="list-li border" key={index}>
                 <div>{article}</div>
 
                 <div>
