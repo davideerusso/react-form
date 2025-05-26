@@ -37,9 +37,9 @@ export default function App() {
       <form onSubmit={handleFormSubmit}>
         <input
           value={newArticle}
-          onChange={(e) => setNewArticle(e.target.value)}
+          onChange={(e) => setNewArticle(e.target.value.trim())}
           type="text"
-          minlength="3"
+          minLength="3"
         ></input>
 
         <button>invia</button>
