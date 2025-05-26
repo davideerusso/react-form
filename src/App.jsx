@@ -9,9 +9,20 @@ export default function App() {
     "Sale",
     "Lievito",
   ]);
+  const [errorMessage, setErrorMessage] = useState();
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+
+    console.log(newArticle);
+    {
+      newArticle === ""
+        ? setErrorMessage("L'input non può essere vuoto")
+        : setErrorMessage("");
+    }
+
+    console.log(newArticle);
+
     const newArticleLIst = [...articleList, newArticle];
     setArticleList(newArticleLIst);
     setNewArticle("");
@@ -24,8 +35,11 @@ export default function App() {
           value={newArticle}
           onChange={(e) => setNewArticle(e.target.value)}
           type="text"
+          minlength="3"
         ></input>
+
         <button>invia</button>
+        {errorMessage && <p>{errorMessage}</p>}
       </form>
       <ul>
         {articleList.map((article, index) => (
