@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 useState;
 export default function App() {
@@ -13,19 +14,22 @@ export default function App() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    setErrorMessage("");
 
-    console.log(newArticle);
-    {
-      newArticle === ""
-        ? setErrorMessage("L'input non può essere vuoto")
-        : setErrorMessage("");
+    if (newArticle === "") {
+      setErrorMessage("L'input non può essere vuoto");
+      return;
     }
-
-    console.log(newArticle);
 
     const newArticleLIst = [...articleList, newArticle];
     setArticleList(newArticleLIst);
     setNewArticle("");
+  };
+  const handleToDelete = (indexDelete) => {
+    const newArticleLIst = articleList.filter(
+      (article, index) => index != indexDelete
+    );
+    setArticleList(newArticleLIst);
   };
 
   return (
@@ -43,7 +47,13 @@ export default function App() {
       </form>
       <ul>
         {articleList.map((article, index) => (
-          <li key={index}>{article}</li>
+          <li key={index}>
+            {article}
+            <FontAwesomeIcon
+              onClick={() => handleToDelete(index)}
+              icon="fa-solid fa-trash"
+            />
+          </li>
         ))}
       </ul>
     </>
